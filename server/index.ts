@@ -63,8 +63,8 @@ app.use('/uploads', express.static('uploads'));
     // await seedInventoryData();
 
     // Seed company data
-    const { seedCompanyData } = await import('./seed/seedCompanies.js');
-    await seedCompanyData();
+    // const { seedCompanyData } = await import('./seed/seedCompanies.js');
+    // await seedCompanyData();
 
     // Create HTTP server first
     // const server = createServer(app);
