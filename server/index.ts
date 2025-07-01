@@ -55,19 +55,19 @@ app.use('/uploads', express.static('uploads'));
   try {
     // Connect to MongoDB
     await connectDB();
-    
+
     // Create seed users after database connection
-    await createSeedUsers();
-    
+    // await createSeedUsers();
+
     // Seed inventory data
-    await seedInventoryData();
-    
+    // await seedInventoryData();
+
     // Seed company data
     const { seedCompanyData } = await import('./seed/seedCompanies.js');
     await seedCompanyData();
-    
+
     // Create HTTP server first
-    const server = createServer(app);
+    // const server = createServer(app);
 
     // STEP 1: Add middleware
     app.use(cors({
@@ -76,10 +76,10 @@ app.use('/uploads', express.static('uploads'));
     }));
     app.use(express.json());
 
-    
+
     // Static file serving for uploaded images
     app.use('/uploads', express.static('uploads'));
-    
+
     // Serve test file for debugging
     app.get('/test-profile', (req, res) => {
       res.sendFile(path.join(process.cwd(), 'test-profile.html'));
@@ -89,23 +89,23 @@ app.use('/uploads', express.static('uploads'));
     try {
       const authRoutes = (await import('./auth-routes.js')).default;
       app.use('/api', authRoutes);
-      
+
       const profileRoutes = (await import('./routes/profileRoutes.js')).default;
       app.use('/api', profileRoutes);
-      
+
       const inventoryRoutes = (await import('./routes/inventoryRoutes.js')).default;
       app.use('/api', inventoryRoutes);
-      
+
       const customerRoutes = (await import('./routes/customerRoutes.js')).default;
       app.use('/api', customerRoutes);
-      
+
       const supplierRoutes = (await import('./routes/supplierRoutes.js')).default;
       app.use('/api', supplierRoutes);
-      
+
       const companyRoutes = (await import('./routes/companyRoutes.js')).default;
       app.use('/api/companies', companyRoutes);
       console.log('Company routes registered at /api/companies');
-      
+
       log("API routes registered successfully");
     } catch (error) {
       log(`Error importing routes: ${error.message}`);
@@ -135,10 +135,10 @@ app.use('/uploads', express.static('uploads'));
       res.status(status).json({ message });
     });
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
+    // ALWAYS serve the app on port 5000
+    // this serves both the API and the client.
+    // It is the only port that is not firewalled.
+    const port = 5000;
     server.listen({
       port,
       host: "0.0.0.0",
