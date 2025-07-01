@@ -61,7 +61,7 @@ app.use('/uploads', express.static('uploads'));
 
     // Seed inventory data
     // await seedInventoryData();
-
+    // aa
     // Seed company data
     // const { seedCompanyData } = await import('./seed/seedCompanies.js');
     // await seedCompanyData();
